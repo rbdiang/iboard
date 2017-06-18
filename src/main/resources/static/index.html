@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css"/>
+</head>
+<body ng-app="iBoard">
+<div class="container" ng-controller="AppController">
+    <div class="jumbotron">
+        <h1>iBoard</h1>
+        <p>An Autocomplete Provider {{wtf}}</p>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Train iBoard</h3>
+        </div>
+        <div class="panel-body">
+            <textarea class="form-control" ng-model="passage" placeholder="Enter Passage to train iBoard..."></textarea>
+            <div class="btn-group btn-group-lg" role="group">
+              <button type="button" ng-disabled="!passage || passage.length === 0" class="btn" ng-click="train()">Train/Retrain</button>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="trained === true" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Get Word Suggestion</h3>
+        </div>
+        <div class="panel-body">
+            <input type="text" class="form-control" ng-model="fragment" placeholder="Type character(s)"></textarea>
+            <div ng-show="suggestions.length > 0" class="alert alert-success">
+                Suggested words:
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="s in suggestions">{{s}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
+<script type="text/javascript" src="./app/iboard.js"></script>
+</body>
+</html>
